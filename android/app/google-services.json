@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "937116094175",
+    "project_id": "tiktok-196e6",
+    "storage_bucket": "tiktok-196e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937116094175:android:efb19724f51881fe78a36a",
+        "android_client_info": {
+          "package_name": "com.harishvadaparty.tiktok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937116094175-rianfmp7575ukh2dd0msbqogap1l4hn3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.harishvadaparty.tiktok",
+            "certificate_hash": "8acefb58cfbfd73d896a62960043ff4da4dae843"
+          }
+        },
+        {
+          "client_id": "937116094175-1s6makrtif8o67te0cudl9psll9cuhn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJtDqFdNwVythZdJyP0qDYi2_hjmwkRhg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937116094175-1s6makrtif8o67te0cudl9psll9cuhn8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "937116094175-2os4ao2u7gmf1gje0g1hdntndu82r50n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.harishvadaparty.tiktok"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
