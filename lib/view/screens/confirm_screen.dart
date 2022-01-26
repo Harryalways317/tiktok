@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/controllers/upload_video_controller.dart';
 import 'package:tiktok/view/widgets/text_input_field.dart';
 import 'dart:io';
-
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class ConfirmScreen extends StatefulWidget {
@@ -17,6 +18,8 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
   late VideoPlayerController controller;
   TextEditingController songController = TextEditingController();
   TextEditingController captionController = TextEditingController();
+
+  UploadVideoController uploadVideoController = Get.put(UploadVideoController());
   @override
   void initState() {
     // TODO: implement initState
@@ -28,6 +31,12 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
       controller.setVolume(1);
       controller.setLooping(true);
     });
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -59,7 +68,12 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                     child: TextInputField(controller: captionController,isObscure: false,labelText: "Caption Name",icon: Icons.closed_caption,),
                   ),
                   SizedBox(height: 10,),
-                  ElevatedButton(onPressed: (){}, child: Text("Share",style: TextStyle(fontSize: 20,color: Colors.white),))
+                  ElevatedButton(onPressed: () => uploadVideoController.uploadVideo(songController.text, captionController.text, widget.videoPath).then((value) {
+                    Get.snackbar(value, "Check out in the home page");
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+
+                  }), child: Text("Share",style: TextStyle(fontSize: 20,color: Colors.white),))
                 ],
               ),
             )
