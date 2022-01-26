@@ -13,6 +13,7 @@ class AuthController extends GetxController {
 
   static AuthController instance = Get.find();
   late Rx<User?> _user;
+  User get user => _user.value!;
   late Rx<File?> _pickedImage;
   File? get profilePhoto => _pickedImage.value;
 
