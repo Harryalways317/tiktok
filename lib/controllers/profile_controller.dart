@@ -9,7 +9,7 @@ class ProfileController extends GetxController{
   Rx<String> _uid = "".obs;
   bool isFollowing = false;
 
-  updateserId(String uid){
+  updateUserId(String uid){
     _uid.value = uid;
     getUserData();
   }
@@ -52,12 +52,25 @@ class ProfileController extends GetxController{
       'likes' : likes.toString(),
       'isFollowing' : isFollowing,
       'followers' : followers.toString(),
-      'following ' : following.toString(),
+      'following' : following.toString(),
 
     };
     update();
+  }
 
+  followUser()async{
+    var doc = await firebaseFirestore.collection('users').doc(_uid.value).collection('followers').doc(authController.user.uid).get();
+    if(!doc.exists){
+      await firebaseFirestore.collection('users').doc(_uid.value).collection('followers').doc(authController.user.uid).set({});
+      await firebaseFirestore.collection('users').doc(authController.user.uid).collection('following').doc(_uid.value).set({});
+      _user.value.update('followers', (value) => (int.parse(value)+1).toString());
+    }else{
+      await firebaseFirestore.collection('users').doc(_uid.value).collection('followers').doc(authController.user.uid).delete();
+      await firebaseFirestore.collection('users').doc(authController.user.uid).collection('following').doc(_uid.value).delete();
+      _user.value.update('followers', (value) => (int.parse(value)-1).toString());
+    }
 
+    _user.value.update('isFollowing', (value) => !value);
 
   }
 }
