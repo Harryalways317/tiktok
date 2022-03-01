@@ -81,76 +81,82 @@ class VideoScreen extends StatelessWidget {
               return Stack(
                 children: [
                   VideoPlayerItem(videoUrl: data.videoUrl  ),
-                  Column(
-                    children: [
-                      const SizedBox(height: 100,),
-                      Expanded(
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  padding: EdgeInsets.only(left: 20),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(data.username,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
-                                      Text(data.caption,style: TextStyle(fontSize: 15,color: Colors.white),),
-                                      Row(
-                                        children: [
-                                          Icon(Icons.music_note,size: 20,),
-                                          Text(data.songName,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white),),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                margin: EdgeInsets.only(top: size.height/5 ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    _buiildProfile(data.profilePhoto),
-                                    Column(
+                  Positioned(
+                    width: size.width,
+                    height: size.height,
+                    bottom: 15,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 100,),
+                        Expanded(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        InkWell(
-                                          onTap: () => videoController.likeVideo(data.id),
-                                          child: Icon(Icons.favorite,size: 40,color:data.likes.contains(authController.user.uid)? Colors.red:Colors.white),
-
-                                        ),
-                                        SizedBox(height: 7,),
-                                        Text("${data.likes.length.toString()} likes",style: TextStyle(fontSize: 15,color: Colors.white),),
-                                        InkWell(
-                                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CommentScreen(id: data.id,))),
-                                          child: Icon(Icons.comment,size: 40,color: Colors.white,),
-
-                                        ),
-                                        SizedBox(height: 7,),
-                                        Text(data.commentCount.toString(),style: TextStyle(fontSize: 20,color: Colors.white),),
-                                        InkWell(
-                                          onTap: null,
-                                          child: Icon(Icons.reply,size: 40,color:Colors.white,),
-
-                                        ),
-                                        SizedBox(height: 7,),
-                                        Text(data.shareCount.toString(),style: TextStyle(fontSize: 20,color: Colors.white),),
+                                        Text(data.username,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
+                                        Text(data.caption,style: TextStyle(fontSize: 15,color: Colors.white),),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.music_note,size: 20,),
+                                            Text(data.songName,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white),),
+                                          ],
+                                        )
                                       ],
                                     ),
-                                    CircleAnimation(child : buildMusicAlbum(data.profilePhoto)),
-
-
-                                  ],
+                                  ),
                                 ),
-                              )
-                            ],
-                          ),
-                      )
-                    ],
+                                Container(
+                                  width: 100,
+                                  margin: EdgeInsets.only(top: size.height/4 ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      _buiildProfile(data.profilePhoto),
+                                      Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () => videoController.likeVideo(data.id),
+                                            child: Icon(Icons.favorite,size: 40,color:data.likes.contains(authController.user.uid)? Colors.red:Colors.white),
+
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Text("${data.likes.length.toString()} likes",style: TextStyle(fontSize: 15,color: Colors.white),),
+                                          InkWell(
+                                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CommentScreen(id: data.id,))),
+                                            child: Icon(Icons.comment,size: 40,color: Colors.white,),
+
+                                          ),
+                                          SizedBox(height: 15,),
+                                          Text(data.commentCount.toString(),style: TextStyle(fontSize: 20,color: Colors.white),),
+                                          InkWell(
+                                            onTap: null,
+                                            child: Icon(Icons.reply,size: 40,color:Colors.white,),
+
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Text(data.shareCount.toString(),style: TextStyle(fontSize: 20,color: Colors.white),),
+                                        ],
+                                      ),
+
+                                      CircleAnimation(child : buildMusicAlbum(data.profilePhoto)),
+
+
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               );
